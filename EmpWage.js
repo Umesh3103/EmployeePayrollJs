@@ -45,5 +45,23 @@
     }    
     console.log("Showing daily hours worked and wage earned "+empDailyHrsAndWageArr);
     
+    let totalWages = empDailyHrsAndWageArr
+                     .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage>0)
+                     .reduce((totalWage, dailyHrsAndWage) => totalWage += dailyHrsAndWage.dailyWage, 0);
+    let totalHours = empDailyHrsAndWageArr
+                    .filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage>0)
+                    .reduce((totalHours, dailyHrsAndWage) => totalHours+=dailyHrsAndWage.dailyHours,0);
+    console.log("Total hours: "+totalHours+" Total wage: "+totalWages);
+
+    process.stdout.write("Logging full work days")
+    empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours==8)
+                         .forEach(dailyHrsAndWage => process.stdout.write(dailyHrsAndWage.toString()));
+    let partWorkingDaysStrArr = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours==4)
+                                .map(dailyHrsAndWage => dailyHrsAndWage.toString());
+    console.log("\nPart working days String: "+partWorkingDaysStrArr);
+
+    let nonWorkingDayNums = empDailyHrsAndWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours==0)
+                            .map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+    console.log("Non working days number: "+nonWorkingDayNums);
 }
 
