@@ -70,7 +70,7 @@ class EmployeePayrollData {
 let employeePayrollData = new EmployeePayrollData(1,"Mark",30000,"M");
 console.log(employeePayrollData.toString());
 try {
-    employeePayrollData.id = 0;
+    employeePayrollData.salary = 0;
     console.log(employeePayrollData.toString());
 } catch (e) {
     console.error(e);
